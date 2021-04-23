@@ -1,43 +1,23 @@
 import pandas as pd
+import data
 import matplotlib.pyplot as plt
+from memes import make_figs
 
-URL = "https://docs.google.com/spreadsheets/d/1uuGMcZCRLYsdcoRp13unie8BIEuEUvjC_R-hRpCUVdA/edit#gid=1038305874"  # URL for data
-URL = URL.replace(
-    "/edit#gid=", "/export?format=csv&gid="
-)  # Have gsheets convert it into a csv
-
-names = [
-    "Timestamp",
-    "Email Address",
-    "Social Media",
-    "#1",
-    "#2",
-    "#3",
-    "#4",
-    "#5",
-    "#6",
-]
-
-data = pd.read_csv(
-    URL, header=0, names=names, memory_map=True
-)  # point Pandas to the data
-emails = data.pop("Email Address")  # remove emails from data
-timestamp = data.pop("Timestamp")
-
+df, emails, timestamp = data.get_data()
 respondents, questions = (
-    len(data.index),
-    len(data.columns) - 1,
+    len(df.index),
+    len(df.columns) - 1,
 )  # get number of respondents and number of questions
 
 # queries to filter responses by social media, labels are self-explanatory
-tiktok = data[data["Social Media"] == "Tiktok"]
-instagram = data[data["Social Media"] == "Instagram"]
-youtube = data[data["Social Media"] == "Youtube"]
-reddit = data[data["Social Media"] == "Reddit"]
-twitter = data[data["Social Media"] == "Twitter"]
-facebook = data[data["Social Media"] == "Facebook"]
-snapchat = data[data["Social Media"] == "Snaphchat"]
-whatsapp = data[data["Social Media"] == "WhatsApp"]
+tiktok = df[df["Social Media"] == "Tiktok"]
+instagram = df[df["Social Media"] == "Instagram"]
+youtube = df[df["Social Media"] == "Youtube"]
+reddit = df[df["Social Media"] == "Reddit"]
+twitter = df[df["Social Media"] == "Twitter"]
+facebook = df[df["Social Media"] == "Facebook"]
+snapchat = df[df["Social Media"] == "Snapchat"]
+whatsapp = df[df["Social Media"] == "WhatsApp"]
 
 social_medias = [
     tiktok,
@@ -47,12 +27,13 @@ social_medias = [
     twitter,
     facebook,
     snapchat,
-    whatsapp,
+    whatsapp
 ]  # put all the filtered data into a list
+
 for i in social_medias:
     i.reindex()  # reindex all of the filtered data
 
-# compute averages
+# compute averages for filtered data and put into list
 avg1 = [i["#1"].mean() for i in social_medias]
 avg2 = [i["#2"].mean() for i in social_medias]
 avg3 = [i["#3"].mean() for i in social_medias]
@@ -61,3 +42,4 @@ avg5 = [i["#5"].mean() for i in social_medias]
 avg6 = [i["#6"].mean() for i in social_medias]
 avgs = [avg1, avg2, avg3, avg4, avg5, avg6]
 
+make_figs()
