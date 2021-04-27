@@ -86,7 +86,7 @@ def histograms():
     ax.set_title("Overall")
     ax.set_xlabel("Rating")
     ax.set_xlim([0, 10])
-    ax.set_xticks(np.arange(0, 11))
+    ax.set_xticks(np.arange(1, 11))
     ax.hist(s, bins="auto", density=True)
     fig.savefig("Histograms\Overall.jpg")
     plt.close()
