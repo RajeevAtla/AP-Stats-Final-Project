@@ -1,6 +1,3 @@
-import pandas as pd
-
-import matplotlib.pyplot as plt
 from memes import boxplots, histograms
 from pie import pie_chart
 from chisquared import chisquare_and_tables

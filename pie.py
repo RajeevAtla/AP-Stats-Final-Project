@@ -1,4 +1,3 @@
-import pandas as pd
 import data
 import matplotlib.pyplot as plt
 
@@ -25,10 +24,10 @@ def pie_chart():
         twitter,
         facebook,
         snapchat,
-        whatsapp
+        whatsapp,
     ]
 
-    #create labels for each social media
+    # create labels for each social media
     labels = [
         "Tiktok",
         "Instagram",
@@ -37,17 +36,17 @@ def pie_chart():
         "Twitter",
         "Facebook",
         "Snapchat",
-        "WhatsApp"
+        "WhatsApp",
     ]
 
     for i in social_medias:
         i.reindex()  # reindex all of the filtered data
 
-    #get number of each social media's users
+    # get number of each social media's users
     data1 = [len(i.index) for i in social_medias]
 
     fig, ax = plt.subplots()
-    ax.pie(data1, labels=labels, autopct='%1.1f%%', pctdistance=0.9, normalize=True)
+    ax.pie(data1, labels=labels, autopct="%1.1f%%", pctdistance=0.9, normalize=True)
     ax.axis("equal")
 
     fig.savefig("Piechart\piechart.jpg")

@@ -1,7 +1,6 @@
 import pandas as pd
 import data
 import matplotlib.pyplot as plt
-from scipy import stats
 import numpy as np
 
 
@@ -66,7 +65,7 @@ def histograms():
         ax.set_title(fig_titles[i])
         ax.set_xlabel("Rating")
         ax.set_xlim([0, 10])
-        ax.set_xticks(np.arange(0, 11))
+        ax.set_xticks(np.arange(1, 11))
         ax.hist(memes[i], bins="auto", density=True)
         fig.savefig("Histograms\{}.jpg".format(fig_titles[i]))
         plt.close()
